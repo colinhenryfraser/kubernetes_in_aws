@@ -32,14 +32,14 @@ class AWSPlatform():
         # The EC2 resource
         try:
             self.ec2 = boto3.resource('ec2')
-        except Exception, e:
+        except Exception,e:
             self.log("Unable to create the rerource EC2")
-            self.log(e)
+            self.log(str(e))
             self.ec2 = None
 
     def log(self, message="", type="DEBUG"):
         """
-        Log any messages
+        Log any messages - not sure how I am going to log so just keep it all here for now
         :param type: The type of message - DEBUG, WARNING, INFO
         :param message:
         :return:
@@ -53,11 +53,11 @@ class AWSPlatform():
         :return: True of False depending on success
         """
         try:
-            self.vpc = self.vpcs.append(self.ec2.Vpc(self.platform_id))
+            self.vpc = self.vpc.append(self.ec2.Vpc(self.platform_id))
             return True
-        except Exception, e:
+        except Exception,e:
             self.log("Unable to create the rerource EC2")
-            self.log(e)
+            self.log(str(e))
             return False
 
     def create_subnet(self):
@@ -74,7 +74,7 @@ class AWSPlatform():
             return True
         except Exception,e:
             self.log("Unable to create a subnet")
-            self.log(e)
+            self.log(str(e))
             return False
 
     def create_security_group(self):
@@ -97,5 +97,8 @@ class AWSPlatform():
                                   InstanceType=self.instance_type,
                                   KeyName=self.key_name,
                                   SecurityGroupIds=self.security_groups,
-                                  SubnetId=self.subnet_id,
+                                  SubnetId=self.subnet,
                                   )
+
+if __name__ == '__main__':
+    pass
