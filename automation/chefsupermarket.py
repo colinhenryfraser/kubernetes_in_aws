@@ -19,7 +19,9 @@ class ChefSupermarket():
         :param save_path: The path of where to save the file
         :return:
         """
-        download_url = "{}/cookbooks/{}/download".format(self.supermarket_url, cookbook_name)
+        download_url = "{}/cookbooks/{}/versions/{}/download".format(self.supermarket_url,
+                                                                     cookbook_name,
+                                                                     version)
         downloaded_tar_file = "{}.tgz".format(cookbook_name)
 
         #
