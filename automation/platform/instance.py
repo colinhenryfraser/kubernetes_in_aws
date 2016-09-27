@@ -7,4 +7,4 @@ class Instance():
         :param instance_type: 
         :return:
         """
-    def
+        pass

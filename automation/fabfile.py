@@ -35,7 +35,7 @@ def kube_start(platform_id=None):
     supermarket = ChefSupermarket()
     supermarket.download("kubernetes", "latest", cookbooks_path)
     supermarket.download("docker", "1.0.12", cookbooks_path)
-    supermarket.download("build-essential", "2.2.3", )
+    supermarket.download("build-essential", "2.2.3", cookbooks_path)
     supermarket.download("selinux", "0.9.0", cookbooks_path)
     supermarket.download("compat_resource", "latest", cookbooks_path)
 
@@ -71,10 +71,10 @@ def kube_start(platform_id=None):
     }
     chef = RemoteChefClient(host=host, cookbook_url=chef_solo_url, chef_config_data=chef_config )
     chef.install()
-    chef.run("kubernetes")
+    chef.run("kubernetes::master")
 
     # Delete the S3 bucket
-    #bucket.delete()
+    bucket.delete()
 
     # print the result
     print kube_status(platform_id)
